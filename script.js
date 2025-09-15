@@ -92,3 +92,29 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+function blowOutCandles() {
+  const activeCandles = updateCandleCount();
+  if (activeCandles !== 17) return;
+
+  let blownOut = 0;
+
+  if (isBlowing()) {
+    candles.forEach((candle) => {
+      if (!candle.classList.contains("out") && Math.random() > 0.5) {
+        candle.classList.add("out");
+        blownOut++;
+      }
+    });
+  }
+
+  if (blownOut > 0) {
+    const remaining = updateCandleCount();
+    // ✅ redirect when ALL are blown out
+    if (remaining === 0) {
+      setTimeout(() => {
+        window.location.href = "celebration.html";
+      }, 800); // short delay so user sees final blow
+    }
+  }
+}
+
