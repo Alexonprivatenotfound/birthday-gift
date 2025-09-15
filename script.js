@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
       (candle) => !candle.classList.contains("out")
     ).length;
     candleCountDisplay.textContent = activeCandles;
+    return activeCandles; // so we can check this easily
   }
 
   function addCandle(left, top) {
@@ -46,10 +47,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     let average = sum / bufferLength;
 
-    return average > 40; //
+    return average > 40;
   }
 
   function blowOutCandles() {
+    // only allow blowing if there are exactly 17 active candles
+    const activeCandles = updateCandleCount();
+    if (activeCandles !== 17) {
+      return; // do nothing until the right number is reached
+    }
+
     let blownOut = 0;
 
     if (isBlowing()) {
@@ -84,3 +91,4 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("getUserMedia not supported on your browser!");
   }
 });
+
