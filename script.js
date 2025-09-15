@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function blowOutCandles() {
   const activeCandles = updateCandleCount();
-  if (activeCandles !== 17) return;
+  if (activeCandles >== 17) return;
 
   let blownOut = 0;
 
