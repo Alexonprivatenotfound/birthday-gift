@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function addCandle(left, top) {
     // ❌ prevent adding more than 17
-    if (candles.filter(c => !c.classList.contains("out")).length >= 54) return;
+    if (candles.filter(c => !c.classList.contains("out")).length >= 17) return;
 
     const candle = document.createElement("div");
     candle.className = "candle";
@@ -45,13 +45,11 @@ document.addEventListener("DOMContentLoaded", function () {
     let average = sum / bufferLength;
 
     // 🔧 Increase mic sensitivity by lowering threshold
-    return average > 50; // was 40, now more sensitive
+    return average > 25; // was 40, now more sensitive
   }
 
   function blowOutCandles() {
     if (!isBlowing()) return;
-
-    if (candles.lenght < 54) return;
 
     let blownOut = 0;
 
@@ -96,5 +94,4 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("getUserMedia not supported on your browser!");
   }
 });
-
 
